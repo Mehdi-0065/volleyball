@@ -1,8 +1,11 @@
-# 🏐 Volleyball Rotation Trainer
+# 🏐 RotationIQ — Volleyball Rotation Coach
 
 A modern, animated single-page app that teaches volleyball court rotations and
 player movement for the four main systems — **4‑2, 6‑2, 5‑1** and the beginner
 **6‑6** — across all 6 rotations, with no libero (exactly 6 players on court).
+
+Ships as a website (AWS Amplify) and as native **Android** and **iOS** apps
+(Capacitor) from one shared codebase. Store display name: **RotationIQ: Volleyball Coach**.
 
 For every system × rotation it shows:
 

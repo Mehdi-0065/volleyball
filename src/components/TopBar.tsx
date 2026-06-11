@@ -22,10 +22,10 @@ export default function TopBar() {
             </div>
             <div>
               <h1 className="text-base font-extrabold leading-tight text-slate-900 dark:text-white sm:text-lg">
-                Volleyball Rotation Trainer
+                RotationIQ
               </h1>
               <p className="hidden text-xs text-slate-500 dark:text-slate-400 sm:block">
-                Learn lineups, movement &amp; the overlap rule
+                Volleyball rotations, systems &amp; the overlap rule
               </p>
             </div>
           </div>
