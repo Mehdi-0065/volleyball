@@ -75,11 +75,6 @@ export default function Court() {
           <filter id="tokenShadow" x="-50%" y="-50%" width="200%" height="200%">
             <feDropShadow dx="0" dy="0.8" stdDeviation="0.9" floodColor="#0f172a" floodOpacity="0.35" />
           </filter>
-          <radialGradient id="ballGrad" cx="35%" cy="30%" r="75%">
-            <stop offset="0%" stopColor="#fef9c3" />
-            <stop offset="55%" stopColor="#facc15" />
-            <stop offset="100%" stopColor="#ca8a04" />
-          </radialGradient>
         </defs>
 
         {/* Opponent court hint */}
@@ -201,19 +196,26 @@ export default function Court() {
                 )}
 
                 {below && (
-                  <text
-                    textAnchor="middle"
-                    y={TOKEN_R + 4}
-                    className="fill-slate-700 dark:fill-slate-100"
-                    fontSize={3}
-                    fontWeight={700}
-                    style={{ paintOrder: 'stroke' }}
-                    stroke="white"
-                    strokeWidth={0.9}
-                    strokeOpacity={0.85}
-                  >
-                    {below}
-                  </text>
+                  <g>
+                    <rect
+                      x={-(below.length * 1.7 + 3) / 2}
+                      y={TOKEN_R + 1.6}
+                      width={below.length * 1.7 + 3}
+                      height={4.6}
+                      rx={2.3}
+                      className="fill-white/90 dark:fill-slate-900/85"
+                    />
+                    <text
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                      y={TOKEN_R + 3.9}
+                      className="fill-slate-800 dark:fill-slate-50"
+                      fontSize={3}
+                      fontWeight={600}
+                    >
+                      {below}
+                    </text>
+                  </g>
                 )}
               </motion.g>
             );
@@ -228,15 +230,20 @@ export default function Court() {
             animate={{ x: ballPoints.map((pt) => pt.x), y: ballPoints.map((pt) => pt.y) }}
             transition={reduce || ballPoints.length < 2 ? { duration: 0 } : { duration: BALL_DURATION / speed, ease: 'easeInOut' }}
           >
-            <ellipse cx={0} cy={3} rx={2.4} ry={0.9} fill="#0f172a" opacity={0.18} />
-            <motion.circle
-              r={2.7}
-              fill="url(#ballGrad)"
-              stroke="#a16207"
-              strokeWidth={0.4}
-              animate={reduce ? {} : { scale: [1, 1.12, 1] }}
+            <ellipse cx={0} cy={3.1} rx={2.5} ry={0.9} fill="#0f172a" opacity={0.18} />
+            <motion.g
+              animate={reduce ? {} : { scale: [1, 1.1, 1] }}
               transition={reduce ? {} : { duration: 0.5, repeat: Infinity, ease: 'easeInOut' }}
-            />
+            >
+              <g transform="scale(0.1556)">
+                <circle r={18} fill="#fde68a" stroke="#b45309" strokeWidth={1.4} />
+                <g fill="none" stroke="#1e3a8a" strokeWidth={1.9} strokeLinecap="round">
+                  <path d="M0 -18 C -6 -8, -6 8, 0 18" />
+                  <path d="M-16 -6 C -4 -2, 10 -4, 18 -10" />
+                  <path d="M-16 8 C -6 4, 10 6, 18 12" />
+                </g>
+              </g>
+            </motion.g>
           </motion.g>
         )}
       </svg>

@@ -18,7 +18,14 @@ export default function Legend() {
           <span className="text-slate-600 dark:text-slate-300">Current setter</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="h-3.5 w-3.5 rounded-full" style={{ background: '#facc15', border: '1px solid #ca8a04' }} />
+          <svg width="16" height="16" viewBox="-20 -20 40 40" aria-hidden>
+            <circle r="18" fill="#fde68a" stroke="#b45309" strokeWidth="1.6" />
+            <g fill="none" stroke="#1e3a8a" strokeWidth="2.2" strokeLinecap="round">
+              <path d="M0 -18 C -6 -8, -6 8, 0 18" />
+              <path d="M-16 -6 C -4 -2, 10 -4, 18 -10" />
+              <path d="M-16 8 C -6 4, 10 6, 18 12" />
+            </g>
+          </svg>
           <span className="text-slate-600 dark:text-slate-300">Ball</span>
         </div>
         <div className="col-span-2 flex items-center gap-2">
