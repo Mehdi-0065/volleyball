@@ -102,6 +102,38 @@ Steps:
 No server‑side rendering or backend is required, and there is no client‑side
 routing, so no rewrite rules are needed.
 
+## Mobile apps (Android & iOS via Capacitor)
+
+The same codebase ships as native Android and iOS apps using
+[Capacitor](https://capacitorjs.com) — the web build runs inside a native
+shell, so all rendering, animation and state code is reused unchanged.
+
+```bash
+# Build the web app and copy it into the native projects
+npm run cap:sync
+
+# Open the native IDEs to run on a device/emulator or to publish
+npm run cap:android   # opens Android Studio
+npm run cap:ios       # opens Xcode (requires macOS)
+
+# Regenerate app icons & splash screens (sources live in /assets)
+node scripts/gen-assets.mjs   # builds the vector PNG sources
+npm run cap:assets            # generates every platform size
+```
+
+Requirements:
+
+- **Android:** Android Studio (+ Android SDK).
+- **iOS:** a Mac with Xcode. Capacitor 8 uses Swift Package Manager, so no
+  CocoaPods step is needed.
+- App identity: `appId: com.rivitan.volleyball`, configured in
+  [`capacitor.config.ts`](./capacitor.config.ts).
+
+Publishing: open the project in Android Studio / Xcode, set your signing
+credentials, then build an `.aab` (Google Play) or archive (App Store). An
+Apple Developer account ($99/yr) and Google Play account ($25 one-time) are
+required for store distribution.
+
 ## Project structure
 
 ```
@@ -123,5 +155,9 @@ src/
     RosterEditor.tsx   # editable real player names
 scripts/
   validate.ts          # data legality checks
+  gen-assets.mjs       # vector -> PNG icon/splash sources
+assets/                # icon & splash source images (Capacitor)
+android/ ios/          # native app projects (Capacitor)
+capacitor.config.ts    # native app id / name / web dir
 amplify.yml            # AWS Amplify Hosting build spec
 ```
